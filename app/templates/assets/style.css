@@ -1,0 +1,196 @@
+
+.wrapper {
+    width: 100%;
+    margin: 0 auto; 
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+header {
+    height: 70px;
+    background-color: #ae8fb1;
+}
+h1, a {
+    font-family: "Open Sans", sans-serif;
+    color: #434e74;
+}
+
+.header__name {
+    font-size: 26px;
+    font-weight: 700;
+    float: left;
+    padding: 14px 0 0 14px;
+}
+
+.header__nav {
+    width: 40%;
+    margin-right: 0;
+    margin-left: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__nav a {
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.header__nav a:hover {
+    color: #e6ddee;
+}
+
+.catalog {
+    background-color:#e6ddee;
+    padding: 30px 0 30px 0;
+}
+
+.catalog__table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 300px;
+}
+
+.fridge {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: #59b8ac;
+}
+
+.tv {
+    background-color: #9f85bd;  
+}
+
+.telephone {
+    background-color: #3f1f79;  
+}
+
+.microwave {
+    background-color: #3e686e;  
+}
+
+.v-cleaner {
+    background-color: #a55798;  
+}
+
+.product__name, .product__description {
+    font-family: "Open Sans", sans-serif;
+    color: #ffffff;
+    padding-top: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.product__name {
+    font-size: 17px;
+    font-weight: 700;
+    width: 60%;
+}
+
+.product__description {
+    font-size: 14px;
+    width: 80%;
+    font-weight: 400;
+}
+
+/* profile */
+
+.profile {
+    background-color: #e6ddee;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.profile__personality {
+    font-family: "Open Sans", sans-serif;
+    color: #434e74;
+    height: 35px;
+    background-color: #d2b6d4;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile__personality p {
+    display: inline-block;
+}
+
+.profile__personality__name {
+    padding-top: 0;
+    font-size: 24px;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.profile__personality__balance {
+    padding-top: 4px;
+    padding-right: 10px;
+}
+
+.profile__personality__status {
+    padding-top: 4px;
+    margin-left: 40%;
+}
+
+.profile__table {
+    display: grid;
+    grid-template-columns: 200px auto;
+    gap: 30px;
+    padding-top: 35px;
+}
+
+.profile__table__photo {
+    max-width: 200px;
+    max-height: 300px;
+}
+
+.profile__table__photo img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.profile__table__information {
+    word-wrap: break-word;
+    display: grid;
+    grid-auto-rows: minmax(40px, auto);
+    row-gap: 15px;
+}
+
+.information__title {
+    font-family: "Open Sans", sans-serif;
+    color: #434e74;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.information__text {
+    font-family: "Open Sans", sans-serif;
+    color: #434e74;
+    font-size: 20px;
+    font-weight: 300;
+}
+.information__orders {
+    display: grid;
+    width: 60%;
+    grid-template-columns: 50% 30% 20%;
+}
+
+.information__orders p:first-child {
+    border-left: 2px solid #434e74;
+}
+.information__orders p {
+    border-right: 2px solid #434e74;
+    border-bottom: 2px solid #434e74;
+    padding-left: 2px;
+}
+.information__orders__header {
+    border-top: 2px solid #434e74;
+    font-weight: 400;
+}
