@@ -9,7 +9,8 @@ from werkzeug.urls import url_parse
 @app.route('/')
 @app.route('/catalog')
 def catalog():
-    return render_template('catalog.html', title='Catalog')
+    types = Type.query.all()
+    return render_template('catalog.html', title='Catalog', types=types)
 
 
 @app.route('/login', methods=['GET', 'POST'])
