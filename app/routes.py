@@ -110,9 +110,24 @@ def get_order():
         db.session.commit()
         flash('You successfully bought {}'.format(order))
         return redirect(url_for('get_order'))
-    # elif request.method == 'GET':
-    #     choises = [(type.name, type.name) for type in Type.query.all()]
-    #     form.product_type.choices = choises
+    elif request.method == 'GET':
+        model = request.args.get('model')
+        type = request.args.get('type')
+        if model and type:
+            form.model.data = model
+            form.product_type.data = type
     return render_template(
         'order.html', title='Order Page', form=form
     )
+
+
+@app.route('/product/<product_name>')
+@login_required
+def product(product_name):
+    type = Type.query.filter(
+        Type.name == product_name
+    ).one()
+    products = Product.query.filter(
+        Product.type_id == type.id
+    ).all()
+    return render_template('product.html', title='{} page'.format(product_name), products=products)

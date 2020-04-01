@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for product in products %}
+ <p>{{ product.model }}</p>
+ <a href="{{ url_for('get_order', model=product.model, type=product.type) }}"><p>Buy me!</p></a>
+{% endfor %}
+
+{% endblock %}
