@@ -111,15 +111,20 @@ def get_order():
         order = Order(
             customer=current_user,
             product=product,
+            count=count,
             price=product.price * count
         )
+        product.count -= count
         db.session.add(order)
         db.session.commit()
         generate_reciept(order)
         uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
-        return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         flash('You successfully bought {}'.format(order))
-        return redirect(url_for('get_order'))
+        if form.get_reciept.data:
+            return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
+        return render_template(
+            'order.html', title='Order Page', form=form
+        )
     elif request.method == 'GET':
         model = request.args.get('model')
         type = request.args.get('type')

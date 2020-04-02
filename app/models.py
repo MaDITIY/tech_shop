@@ -14,6 +14,7 @@ class Order(db.Model):
     date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    count = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):

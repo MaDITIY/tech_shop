@@ -11,7 +11,9 @@ class OrderForm(FlaskForm):
     product_count = IntegerField('Count', validators=[
         NumberRange(min=1, max=1000, message='You can by only 0-1000 products'), DataRequired()
     ])
+    get_reciept = BooleanField('Get reciept')
     submit = SubmitField('Buy')
+
 
     def __init__(self, choises, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)

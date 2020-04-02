@@ -2,9 +2,22 @@
 
 {% block content %}
 
-{% for product in products %}
- <p>{{ product.model }}</p>
- <a href="{{ url_for('get_order', model=product.model, type=product.type) }}"><p>Buy me!</p></a>
-{% endfor %}
+<table border=5px>
+  <tr>
+    <th>Model</th>
+    <th>Count</th>
+    <th>Cost $</th>
+    <th></th>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td><p>{{ product.model }}</p></td>
+    <td><p>{{ product.count }}</p></td>
+    <td><p>{{ product.price }}</p></td>
+    <td><a href="{{ url_for('get_order', model=product.model, type=product.type) }}"><p>Buy me!</p></a></td>
+  </tr>
+  {% endfor %}
+</table>
+
 
 {% endblock %}

@@ -10,6 +10,8 @@ def generate_order_text(order):
             f"Product type: {order.product.type}\r\n"+\
             f"Product Model: {order.product.model}\r\n"+\
             f"Time of deal: {order.date}\r\n"+\
+            f"Product count: {order.count}\r\n"+\
+            f"Product cost: {order.product.price}\r\n"+\
             f"Total cost: {order.price} $\r\n"+\
             "----------------------------------\r\n"+\
             "Thank you!"

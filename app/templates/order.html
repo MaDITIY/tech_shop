@@ -20,8 +20,15 @@
         </p>
         <p>
             {{ form.product_count.label }}<br>
-            {{ form.product_count(min=0, max=100) }}<br>
+            {{ form.product_count() }}<br>
             {% for error in form.product_count.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.get_reciept.label }}<br>
+            {{ form.get_reciept }}<br>
+            {% for error in form.get_reciept.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
