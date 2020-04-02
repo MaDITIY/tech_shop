@@ -1,7 +1,10 @@
+import os
+
 from app import app, db
 from app.models import User, Order, Product, Type
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
-from flask import render_template, flash, redirect, url_for, request
+from app.utils import generate_reciept
+from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
 
@@ -97,7 +100,11 @@ def get_order():
             )
         count = int(form.product_count.data)
         if product.count < count:
-            flash('Currently we don\'t have so much products. Please choose smaller number')
+            flash(
+                'Currently we don\'t have so much products. '
+                'Please choose smaller number. '
+                'We will buy more in some time'
+            )
             return render_template(
                 'order.html', title='Order Page', form=form
             )
@@ -108,6 +115,9 @@ def get_order():
         )
         db.session.add(order)
         db.session.commit()
+        generate_reciept(order)
+        uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+        return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         flash('You successfully bought {}'.format(order))
         return redirect(url_for('get_order'))
     elif request.method == 'GET':
