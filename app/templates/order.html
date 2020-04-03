@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Choose your product</h1>
-    <form action="" method="post">
+<div class="order">
+     <h1 class="order__name">Choose your product</h1>
+    <form action="" method="post" class="order__form">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.product_type.label }}<br>
+            <p class="order__text">{{ form.product_type.label }}</p>
             {{ form.product_type() }}<br>
             {% for error in form.product_type.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.model.label }}<br>
+            <p class="order__text">{{ form.model.label }}</p>
             {{ form.model() }}<br>
             {% for error in form.model.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.product_count.label }}<br>
+            <p class="order__text">{{ form.product_count.label }}</p>
             {{ form.product_count() }}<br>
             {% for error in form.product_count.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.get_reciept.label }}<br>
+            <p class="order__text">{{ form.get_reciept.label }}</p>
             {{ form.get_reciept }}<br>
             {% for error in form.get_reciept.errors %}
             <span style="color: red;">[{{ error }}]</span>
@@ -34,4 +35,5 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+</div>
 {% endblock %}

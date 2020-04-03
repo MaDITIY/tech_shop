@@ -8,11 +8,12 @@
 
 header {
     height: 70px;
-    background-color: #ae8fb1;
+    background-color: #d2b6d4;
 }
 h1, a {
     font-family: "Open Sans", sans-serif;
     color: #434e74;
+    text-decoration: none;
 }
 
 .header__name {
@@ -44,6 +45,7 @@ h1, a {
 .catalog {
     background-color:#e6ddee;
     padding: 30px 0 30px 0;
+    height: 80vh;
 }
 
 .catalog__table {
@@ -52,28 +54,24 @@ h1, a {
     grid-auto-rows: 300px;
 }
 
-.fridge {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 3;
-    grid-column-end: 4;
+.product:nth-child(1) {
+    background-color: #9f85bd;
+}
+
+.product:nth-child(5n+1) {
+    background-color: #3f1f79;
+}
+
+.product:nth-child(5n+2) {
+    background-color: #3e686e;
+}
+
+.product:nth-child(5n+3) {
+    background-color: #a55798;
+}
+
+.product:nth-child(5n+4) {
     background-color: #59b8ac;
-}
-
-.tv {
-    background-color: #9f85bd;  
-}
-
-.telephone {
-    background-color: #3f1f79;  
-}
-
-.microwave {
-    background-color: #3e686e;  
-}
-
-.v-cleaner {
-    background-color: #a55798;  
 }
 
 .product__name, .product__description {
@@ -85,7 +83,7 @@ h1, a {
 }
 
 .product__name {
-    font-size: 17px;
+    font-size: 24px;
     font-weight: 700;
     width: 60%;
 }
@@ -98,11 +96,11 @@ h1, a {
 
 /* profile */
 
-.profile {
+.profile, .order, .edit, .login {
     background-color: #e6ddee;
     padding-top: 30px;
+    min-height: 80vh;
     padding-bottom: 30px;
-    min-height: 100vh;
 }
 
 .profile__personality {
@@ -121,11 +119,11 @@ h1, a {
     display: inline-block;
 }
 
-.profile__personality__name {
+.profile__personality__name, .order__name, .edit__name, .login__name {
     padding-top: 0;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 400;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .profile__personality__balance {
@@ -145,15 +143,10 @@ h1, a {
     padding-top: 35px;
 }
 
-.profile__table__photo {
-    max-width: 200px;
-    max-height: 300px;
-}
-
 .profile__table__photo img {
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
 }
 
 .profile__table__information {
@@ -170,22 +163,26 @@ h1, a {
     font-weight: 700;
 }
 
-.information__text {
+.information__text, .order__text, .edit__text, li, .login__text {
     font-family: "Open Sans", sans-serif;
     color: #434e74;
     font-size: 20px;
     font-weight: 300;
 }
+
+ul {
+    background-color: #e6ddee;
+}
 .information__orders {
     display: grid;
-    width: 60%;
-    grid-template-columns: 50% 30% 20%;
+    width: 80%;
+    grid-template-columns: 20% 30% 10% 15% 25%;
 }
 
-.information__orders p:first-child {
+.information__orders p:first-child, .product__orders p:first-child {
     border-left: 2px solid #434e74;
 }
-.information__orders p {
+.information__orders p, .product__orders p {
     border-right: 2px solid #434e74;
     border-bottom: 2px solid #434e74;
     padding-left: 2px;
@@ -193,4 +190,15 @@ h1, a {
 .information__orders__header {
     border-top: 2px solid #434e74;
     font-weight: 400;
+}
+
+.order__form, .edit__form, .login__form {
+    padding-left: 15px;
+}
+
+.product__orders {
+    display: grid;
+    padding-right: 43px;
+    width: 70%;
+    grid-template-columns: 30% 30% 25% 20%;
 }

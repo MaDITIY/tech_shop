@@ -59,7 +59,10 @@ def register():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('user.html', user=user)
+    orders = Order.query.filter(
+        Order.user_id == user.id
+    ).all()
+    return render_template('user.html', user=user, orders=orders)
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -109,7 +112,7 @@ def get_order():
                 'order.html', title='Order Page', form=form
             )
         order = Order(
-            customer=current_user,
+            user_id=current_user.id,
             product=product,
             count=count,
             price=product.price * count
@@ -119,7 +122,7 @@ def get_order():
         db.session.commit()
         generate_reciept(order)
         uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
-        flash('You successfully bought {}'.format(order))
+        flash('You successfully bought {}'.format(product.model))
         if form.get_reciept.data:
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         return render_template(

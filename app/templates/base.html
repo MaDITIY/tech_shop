@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--    <link href="./assets/style.css" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
-    <link href="{{url_for('static', filename='assets/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -41,32 +41,15 @@
         {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
-<!--        &lt;!&ndash; if we are in catalog go there &ndash;&gt;-->
-<!--        <div class="catalog-page"></div>-->
-<!--        <script>-->
-<!--            var htReq = ('v' == '\v') ? new ActiveXObject ('Microsoft.XMLHTTP') : new XMLHttpRequest ();-->
-<!--            htReq.open ('get', 'catalogChval9.html');-->
-<!--            htReq.onreadystatechange = getReq;-->
-<!--            htReq.send (null);             -->
-<!--            function getReq ()-->
-<!--            {-->
-<!--            if (htReq.readyState == 4) document.querySelector(".catalog-page").innerHTML=htReq.responseText;-->
-<!--            }-->
-<!--        </script>-->
-<!--        &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
-<!--        &lt;!&ndash; if we're in profile go there &ndash;&gt;-->
-<!--        <div class="profile-page"></div>-->
-<!--        <script>-->
-<!--            var htReq = ('v' == '\v') ? new ActiveXObject ('Microsoft.XMLHTTP') : new XMLHttpRequest ();-->
-<!--            htReq.open ('get', 'profileChval9.html');-->
-<!--            htReq.onreadystatechange = getReq;-->
-<!--            htReq.send (null);             -->
-<!--            function getReq ()-->
-<!--            {-->
-<!--            if (htReq.readyState == 4) document.querySelector(".profile-page").innerHTML=htReq.responseText;-->
-<!--            }-->
-<!--        </script>-->
-<!--        &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
     </main>
+<!--<script>-->
+<!--    let but = document.getElementById('submit');-->
+<!--    document.addEventListener('click',(e)=>{-->
+<!--        if(e.target==but) {-->
+<!--            document.location.href="order.html"-->
+<!--        }-->
+<!--    })-->
+<!--    // document.getElementById('submit').preventDefault();-->
+<!--</script>-->
 </body>
 </html>

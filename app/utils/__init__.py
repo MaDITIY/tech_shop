@@ -7,7 +7,7 @@ from app.models import Order
 def generate_order_text(order):
     reciept = f"Receipt from TechShop company:\r\n"+ \
             "----------------------------------\r\n"+\
-            f"Product type: {order.product.type}\r\n"+\
+            f"Product type: {order.product.type.name}\r\n"+\
             f"Product Model: {order.product.model}\r\n"+\
             f"Time of deal: {order.date}\r\n"+\
             f"Product count: {order.count}\r\n"+\

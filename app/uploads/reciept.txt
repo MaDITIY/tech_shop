@@ -1,10 +1,10 @@
 Receipt from TechShop company:
 ----------------------------------
-Product type: <Produc type holodos>
+Product type: holodos
 Product Model: ADT
-Time of deal: 2020-04-02 20:52:44
-Product count: 4
+Time of deal: 2020-04-03 12:45:32
+Product count: 15
 Product cost: 100
-Total cost: 400 $
+Total cost: 1500 $
 ----------------------------------
 Thank you!
