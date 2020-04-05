@@ -1,7 +1,7 @@
 import os
 
 from app import app, db
-from app.models import User, Roles
+from app.models import User, Type, Manufacturer
 from flask import abort
 from flask_login import current_user
 from functools import wraps
@@ -22,6 +22,24 @@ def delete_users(user_ids):
     ).all()
     for user in users:
         db.session.delete(user)
+    db.session.commit()
+
+
+def delete_types(type_ids):
+    types = Type.query.filter(
+        Type.id.in_(type_ids)
+    ).all()
+    for type in types:
+        db.session.delete(type)
+    db.session.commit()
+
+
+def delete_manufacturers(manufacturer_ids):
+    manufacturers = Manufacturer.query.filter(
+        Manufacturer.id.in_(manufacturer_ids)
+    ).all()
+    for manufacturer in manufacturers:
+        db.session.delete(manufacturer)
     db.session.commit()
 
 

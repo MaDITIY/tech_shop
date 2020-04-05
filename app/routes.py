@@ -1,9 +1,9 @@
 import os
 
 from app import app, db
-from app.models import User, Order, Product, Type, Roles
+from app.models import User, Order, Product, Type, Roles, Manufacturer
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
-from app.utils import admin_required, generate_reciept, set_role, delete_users
+from app.utils import admin_required, generate_reciept, set_role, delete_users, delete_types, delete_manufacturers
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
@@ -178,12 +178,57 @@ def admin():
     return render_template('admin.html', title='Admin Page')
 
 
+@app.route('/admin/manufacturers', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def manage_manufacturers():
+    if request.method == 'POST':
+        ids = request.form.getlist('manufacturers')
+        delete_manufacturers(ids)
+    manufacturers = Manufacturer.query.all()
+    return render_template('manage_manufacturers.html', title='Admin Page', manufacturers=manufacturers)
+
+
+@app.route('/admin/create_manufacturer', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def create_manufacturer():
+    if request.method == 'POST':
+        name = request.form['name'].lower()
+        ambassador = request.form['ambassador']
+        manufacturer = Manufacturer.query.filter(
+            Manufacturer.name == name
+        ).first()
+        if manufacturer is None:
+            manufacturer = Manufacturer(
+                name=name,
+                ambassador=ambassador
+            )
+            db.session.add(manufacturer)
+            db.session.commit()
+            flash(f'Manufacturer \'{name}\' was successfully added')
+        else:
+            flash('We already have such manufacturer. No need to add')
+    return render_template('create_manufacturer.html', title='Create Product Type')
+
+
+@app.route('/admin/types', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def manage_types():
+    if request.method == 'POST':
+        ids = request.form.getlist('types')
+        delete_types(ids)
+    types = Type.query.all()
+    return render_template('manage_types.html', title='Admin Page', types=types)
+
+
 @app.route('/admin/create_product_type', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def create_product_type():
     if request.method == 'POST':
-        name = request.form['name']
+        name = request.form['name'].lower
         type = Type.query.filter(
             Type.name == name
         ).first()
@@ -197,7 +242,6 @@ def create_product_type():
     return render_template('create_product_type.html', title='Create Product Type')
 
 
-
 @app.route('/admin/users', methods=['GET', 'POST'])
 @login_required
 @admin_required
@@ -206,13 +250,10 @@ def manage_users():
         ids = request.form.getlist('users')
         if 'admin' in request.form:
             set_role(ids, Roles.Admin)
-            # return redirect(url_for('manage_users'))
         if 'reader' in request.form:
             set_role(ids, Roles.Reader)
-            # return redirect(url_for('manage_users'))
         if 'delete' in request.form:
             delete_users(ids)
-            # return redirect(url_for('manage_users'))
     users = User.query.all()
     return render_template('manage_users.html', title='Admin Page', users=users)
 
