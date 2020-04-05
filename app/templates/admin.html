@@ -2,5 +2,7 @@
 
 {% block content %}
     <p class="order__name">Welcome to admin page</p>
+    <a href="{{ url_for('manage_users') }}">Users</a>
+    <a href="{{ url_for('create_product_type') }}">Create product type</a>
     {% block app_block %}{% endblock %}
 {% endblock %}

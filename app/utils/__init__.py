@@ -1,9 +1,28 @@
 import os
 
-from app import app
+from app import app, db
+from app.models import User, Roles
 from flask import abort
 from flask_login import current_user
 from functools import wraps
+
+
+def set_role(user_ids, role):
+    users = User.query.filter(
+        User.id.in_(user_ids)
+    )
+    for user in users:
+        user.role = role
+    db.session.commit()
+
+
+def delete_users(user_ids):
+    users = User.query.filter(
+        User.id.in_(user_ids)
+    ).all()
+    for user in users:
+        db.session.delete(user)
+    db.session.commit()
 
 
 def generate_order_text(order):

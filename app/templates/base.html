@@ -25,6 +25,9 @@
                 {% else %}
                 <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
                 <a href="{{ url_for('get_order') }}">Order</a>
+                    {% if current_user.is_admin() %}
+                    <a href="{{ url_for('admin') }}">Admin Page</a>
+                    {% endif %}
                 <a href="{{ url_for('logout') }}">Logout</a>
                 {% endif %}
         </div>

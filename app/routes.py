@@ -1,9 +1,9 @@
 import os
 
 from app import app, db
-from app.models import User, Order, Product, Type
+from app.models import User, Order, Product, Type, Roles
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
-from app.utils import admin_required, generate_reciept
+from app.utils import admin_required, generate_reciept, set_role, delete_users
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
@@ -176,3 +176,44 @@ def product(product_name):
 @admin_required
 def admin():
     return render_template('admin.html', title='Admin Page')
+
+
+@app.route('/admin/create_product_type', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def create_product_type():
+    if request.method == 'POST':
+        name = request.form['name']
+        type = Type.query.filter(
+            Type.name == name
+        ).first()
+        if type is None:
+            type = Type(name=name)
+            db.session.add(type)
+            db.session.commit()
+            flash(f'Product type \'{name}\' was successfully created')
+        else:
+            flash('We already have such product type. Please choose another name')
+    return render_template('create_product_type.html', title='Create Product Type')
+
+
+
+@app.route('/admin/users', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def manage_users():
+    if request.method == 'POST':
+        ids = request.form.getlist('users')
+        if 'admin' in request.form:
+            set_role(ids, Roles.Admin)
+            # return redirect(url_for('manage_users'))
+        if 'reader' in request.form:
+            set_role(ids, Roles.Reader)
+            # return redirect(url_for('manage_users'))
+        if 'delete' in request.form:
+            delete_users(ids)
+            # return redirect(url_for('manage_users'))
+    users = User.query.all()
+    return render_template('manage_users.html', title='Admin Page', users=users)
+
+

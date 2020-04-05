@@ -1,0 +1,31 @@
+{% extends 'admin.html' %}
+
+{% block app_block %}
+<form action="/admin/users" method="POST">
+    <table border=5px>
+        <tr>
+            <th>Checkbox lisogo</th>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th>Rang</th>
+            <th>Role</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td><input type="checkbox" name="users" value="{{ user.id }}"></td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.bank }}</td>
+                <td>{{ user.rang.name }}</td>
+                <td>{{ user.role.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" name="admin" value="Set Admin">
+    <input type="submit" name="reader" value="Set Reader">
+    <input type="submit" name="delete" value="Delete">
+</form>
+{% endblock %}
