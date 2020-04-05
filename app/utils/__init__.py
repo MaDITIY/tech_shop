@@ -1,7 +1,9 @@
 import os
 
 from app import app
-from app.models import Order
+from flask import abort
+from flask_login import current_user
+from functools import wraps
 
 
 def generate_order_text(order):
@@ -22,3 +24,12 @@ def generate_order_text(order):
 def generate_reciept(order):
     with open(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'reciept.txt'), 'w') as file:
         file.write(generate_order_text(order))
+
+
+def admin_required(func):
+    @wraps(func)
+    def wrap(*args, **kwargs):
+        if not current_user.is_admin():
+            abort(403)
+        return func(*args, **kwargs)
+    return wrap

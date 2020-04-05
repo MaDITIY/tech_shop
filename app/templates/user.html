@@ -8,8 +8,8 @@
     <div class="wrapper">
         <div class="profile__personality">
             <p class="profile__personality__name">{{ user.username }}</p>
-<!--            <p class="profile__personality__status">Silver customer</p>-->
-<!--            <p class="profile__personality__balance">Balance: 120$</p>-->
+            <p class="profile__personality__status">{{ user.rang }}</p>
+            <p class="profile__personality__balance">Balance: {{ user.bank }}</p>
         </div>
         <div class="profile__table">
             <div class="profile__table__photo"><img src="https://instaturbo.ru/images/blog/5bbe5b813ffd5.jpg" alt="photo"></div>
@@ -26,34 +26,33 @@
                     <a class="information__text" href="https://vk.com/chval9">VK</a>
                 </div>
                 <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-                <div class="profile__table__information__about">
-                    {% if current_user.id == user.id %}
-                    <p class="information__title">Orders</p>
+                {% if current_user.id == user.id %}
+                    <div class="profile__table__information__about">
+                        <p class="information__title">Orders</p>
 
-                    <div class="information__text information__orders__header information__orders">
-                        <p>Type</p>
-                        <p>Model</p>
-                        <p>Cost $</p>
-                        <p>Amount</p>
-                        <p>Total $</p>
+                        <div class="information__text information__orders__header information__orders">
+                            <p>Type</p>
+                            <p>Model</p>
+                            <p>Cost $</p>
+                            <p>Amount</p>
+                            <p>Total $</p>
+                        </div>
+                        {% for order in orders %}
+                        <div class="information__text information__orders">
+                            <p>{{ order.product.type.name }}</p>
+                            <p>{{ order.product.model }}</p>
+                            <p>{{ order.product.price }}</p>
+                            <p>{{ order.count }}</p>
+                            <p>{{ order.price }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% for order in orders %}
-                    <div class="information__text information__orders">
-                        <p>{{ order.product.type.name }}</p>
-                        <p>{{ order.product.model }}</p>
-                        <p>{{ order.product.price }}</p>
-                        <p>{{ order.count }}</p>
-                        <p>{{ order.price }}</p>
-                    </div>
-                    {% endfor %}
-<!--                    </table>-->
-<!--                    {% endif %}-->
-                </div>
-                {% if prev_url %}
-                <a href="{{ prev_url }}">Newer orders</a>
-                {% endif %}
-                {% if next_url %}
-                <a href="{{ next_url }}">Older orders</a>
+                    {% if prev_url %}
+                    <a href="{{ prev_url }}">Newer orders</a>
+                    {% endif %}
+                    {% if next_url %}
+                    <a href="{{ next_url }}">Older orders</a>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

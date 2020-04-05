@@ -3,22 +3,28 @@
 {% block content %}
 <div class="order" style="padding-left: 15px">
     {% if products %}
-    <div class="information__text information__orders__header product__orders">
-        <p>Model</p>
-        <p>Count</p>
-        <p>Cost $</p>
-        <p></p>
-    </div>
-    {% for product in products %}
-    <div class="information__text product__orders">
-        <p>{{ product.model }}</p>
-        <p>{{ product.count }}</p>
-        <p>{{ product.price }}</p>
-        <p><a href="{{ url_for('get_order', model=product.model, type=product.type) }}">Buy me!</a></p>
-    </div>
-    {% endfor %}
+        <div class="information__text information__orders__header product__orders">
+            <p>Model</p>
+            <p>Count</p>
+            <p>Cost $</p>
+            <p></p>
+        </div>
+        {% for product in products %}
+        <div class="information__text product__orders">
+            <p>{{ product.model }}</p>
+            <p>{{ product.count }}</p>
+            <p>{{ product.price }}</p>
+            <p><a href="{{ url_for('get_order', model=product.model, type=product.type) }}">Buy me!</a></p>
+        </div>
+        {% endfor %}
+        {% if prev_url %}
+        <a href="{{ prev_url }}">\<\<</a>
+        {% endif %}
+        {% if next_url %}
+        <a href="{{ next_url }}">\>\></a>
+        {% endif %}
     {% else %}
-    <p class="order__name">Sorry, we don't have such products!</p>
+        <p class="order__name">Sorry, we don't have such products!</p>
     {% endif %}
 </div>
 {% endblock %}

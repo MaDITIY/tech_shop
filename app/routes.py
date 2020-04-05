@@ -3,7 +3,7 @@ import os
 from app import app, db
 from app.models import User, Order, Product, Type
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
-from app.utils import generate_reciept
+from app.utils import admin_required, generate_reciept
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
@@ -152,10 +152,27 @@ def get_order():
 @app.route('/product/<product_name>')
 @login_required
 def product(product_name):
+    page = request.args.get('page', 1, type=int)
+
     type = Type.query.filter(
         Type.name == product_name
     ).one()
     products = Product.query.filter(
         Product.type_id == type.id
-    ).all()
-    return render_template('product.html', title='{} page'.format(product_name), products=products)
+    ).order_by(Product.model).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url = url_for('product', product_name=product_name, page=products.next_num) \
+        if products.has_next else None
+    prev_url = url_for('product', product_name=product_name, page=products.prev_num) \
+        if products.has_prev else None
+    return render_template(
+        'product.html', title='{} page'.format(product_name),
+        products=products.items, next_url=next_url, prev_url=prev_url)
+
+
+@app.route('/admin')
+@login_required
+@admin_required
+def admin():
+    return render_template('admin.html', title='Admin Page')
