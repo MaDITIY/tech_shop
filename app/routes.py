@@ -3,7 +3,8 @@ import os
 from app import app, db
 from app.models import User, Order, Product, Type, Roles, Manufacturer
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
-from app.utils import admin_required, generate_reciept, set_role, delete_users, delete_types, delete_manufacturers
+from app.utils import admin_required, generate_reciept, \
+    set_role, delete_users, delete_types, delete_manufacturers, add_product
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
@@ -228,7 +229,7 @@ def manage_types():
 @admin_required
 def create_product_type():
     if request.method == 'POST':
-        name = request.form['name'].lower
+        name = request.form['name'].lower()
         type = Type.query.filter(
             Type.name == name
         ).first()
@@ -240,6 +241,31 @@ def create_product_type():
         else:
             flash('We already have such product type. Please choose another name')
     return render_template('create_product_type.html', title='Create Product Type')
+
+
+@app.route('/admin/create_product', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def create_product():
+    types = Type.query.all()
+    manufacturers = Manufacturer.query.all()
+    if request.method == 'POST':
+        model = request.form['model'].lower()
+        type = request.form['type']
+        manufacturer = request.form['manufacturer']
+        count = request.form.get('count')
+        price = request.form['price']
+        add_product(
+            model=model,
+            type=type,
+            manufacturer=manufacturer,
+            price=price,
+            count=count
+        )
+    return render_template(
+        'create_product.html', title='Create Product Type',
+        types=types, manufacturers=manufacturers
+    )
 
 
 @app.route('/admin/users', methods=['GET', 'POST'])

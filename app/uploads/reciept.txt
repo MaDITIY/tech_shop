@@ -1,10 +1,10 @@
 Receipt from TechShop company:
 ----------------------------------
 Product type: holodos
-Product Model: Krutoy Holodos
-Time of deal: 2020-04-05 12:54:07
-Product count: 121
+Product Model: model1
+Time of deal: 2020-04-05 22:54:32
+Product count: 100
 Product cost: 500
-Total cost: 60500 $
+Total cost: 50000 $
 ----------------------------------
 Thank you!

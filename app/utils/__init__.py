@@ -1,8 +1,8 @@
 import os
 
 from app import app, db
-from app.models import User, Type, Manufacturer
-from flask import abort
+from app.models import User, Type, Manufacturer, Product
+from flask import abort, flash
 from flask_login import current_user
 from functools import wraps
 
@@ -23,6 +23,32 @@ def delete_users(user_ids):
     for user in users:
         db.session.delete(user)
     db.session.commit()
+
+
+def add_product(model, type, manufacturer, price, count=None):
+    type_id = Type.query.filter(
+        Type.name == type
+    ).first().id
+    product = Product.query.filter(
+        Product.model == model,
+        Product.type_id == type_id
+    ).first()
+    if product is None:
+        manufacturer_id = Manufacturer.query.filter(
+            Manufacturer.name == manufacturer
+        ).first().id
+        product = Product(
+            model=model,
+            type_id=type_id,
+            manufacturer_id=manufacturer_id,
+            count=count or 0,
+            price=price
+        )
+        db.session.add(product)
+        db.session.commit()
+        flash(f'Product \'{model}\' of type {type} was successfully created')
+    else:
+        flash('We already have such product. Please choose another model name')
 
 
 def delete_types(type_ids):
