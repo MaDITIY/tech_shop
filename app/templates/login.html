@@ -1,25 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="login">
-     <h1 class="login__name">Sing In</h1>
-    <form class="login__form" action="" method="post" novalidate>
+    <p class="section__name register">Sing In</p>
+    <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            <p class="login__text">{{ form.username.label }}</p>
+            <p class="section__text">{{ form.username.label }}</p>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
-            <span>[{{ error }}]</span>
+            <span class="error">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="login__text">{{ form.password.label }}</p>
+            <p class="section__text">{{ form.password.label }}</p>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p class="login__text">{{ form.remember_me() }}{{ form.remember_me.label }}</p>
+        <p class="section__text">{{ form.remember_me() }}{{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
-</div>
 {% endblock %}

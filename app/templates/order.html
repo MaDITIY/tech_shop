@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="order">
-     <h1 class="order__name">Choose your product</h1>
-    <form action="" method="post" class="order__form">
+    <p class="section__name register">Choose your product</p>
+    <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            <p class="order__text">{{ form.product_type.label }}</p>
+            <p class="section__text">{{ form.product_type.label }}</p>
             {{ form.product_type() }}<br>
             {% for error in form.product_type.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="order__text">{{ form.model.label }}</p>
+            <p class="section__text">{{ form.model.label }}</p>
             {{ form.model() }}<br>
             {% for error in form.model.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="order__text">{{ form.product_count.label }}</p>
+            <p class="section__text">{{ form.product_count.label }}</p>
             {{ form.product_count() }}<br>
             {% for error in form.product_count.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="order__text">{{ form.get_reciept.label }}</p>
+            <p class="section__text">{{ form.get_reciept.label }}</p>
             {{ form.get_reciept }}<br>
             {% for error in form.get_reciept.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-</div>
 {% endblock %}

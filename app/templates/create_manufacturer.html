@@ -1,10 +1,12 @@
 {% extends 'admin.html' %}
 
 {% block app_block %}
-<form action="/admin/create_manufacturer" method="POST">
-    <p>Please input manufactorer name and ambassador</p>
-    <input type="text" name="name" id="name" required>
-    <input type="text" name="ambassador" id="amb" required>
-    <input type="submit" name="delete" value="Create">
-</form>
+<div class="admin__page">
+    <form action="/admin/create_manufacturer" method="POST">
+        <p>Please input manufactorer name and ambassador</p>
+        <input type="text" name="name" id="name" required>
+        <input type="text" name="ambassador" id="amb" required>
+        <input type="submit" name="delete" value="Create">
+    </form>
+</div>
 {% endblock %}

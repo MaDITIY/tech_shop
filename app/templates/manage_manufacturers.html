@@ -1,23 +1,25 @@
 {% extends 'admin.html' %}
 
 {% block app_block %}
-<form action="/admin/manufacturers" method="POST">
-    <table border=5px>
-        <tr>
-            <th>Checkbox lisogo</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Ambassador</th>
-        </tr>
-        {% for manufacturer in manufacturers %}
+<div class="admin__page">
+    <form action="/admin/manufacturers" method="POST">
+        <table border=5px>
             <tr>
-                <td><input type="checkbox" name="manufacturers" value="{{ manufacturer.id }}"></td>
-                <td>{{ manufacturer.id }}</td>
-                <td>{{ manufacturer.name }}</td>
-                <td>{{ manufacturer.ambassador }}</td>
+                <th>Checkbox lisogo</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Ambassador</th>
             </tr>
-        {% endfor %}
-    </table>
-    <input type="submit" name="delete" value="Delete">
-</form>
+            {% for manufacturer in manufacturers %}
+                <tr>
+                    <td><input type="checkbox" name="manufacturers" value="{{ manufacturer.id }}"></td>
+                    <td>{{ manufacturer.id }}</td>
+                    <td>{{ manufacturer.name }}</td>
+                    <td>{{ manufacturer.ambassador }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" name="delete" value="Delete">
+    </form>
+</div>
 {% endblock %}

@@ -1,10 +1,10 @@
-Receipt from TechShop company:
-----------------------------------
-Product type: holodos
-Product Model: model1
-Time of deal: 2020-04-05 22:54:32
-Product count: 100
-Product cost: 500
-Total cost: 50000 $
-----------------------------------
+Receipt from TechShop company:
+----------------------------------
+Product type: cleaners
+Product Model: ph-342
+Time of deal: 2020-04-06 13:13:03
+Product count: 90
+Product cost: 400
+Total cost: 36000 $
+----------------------------------
 Thank you!
