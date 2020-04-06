@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="login">
-     <h1 class="login__name">Register</h1>
-    <form class="login__form" action="" method="post">
+    <p class="section__name register">Register</p>
+    <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            <p class="login__text">{{ form.username.label }}</p>
+            <p class="section__text">{{ form.username.label }}</p>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </pclass>
+        </p>
         <p>
-            <p class="login__text">{{ form.email.label }}</p>
+            <p class="section__text">{{ form.email.label }}</p>
             {{ form.email(size=64) }}<br>
             {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="login__text">{{ form.password.label }}</p>
+            <p class="section__text">{{ form.password.label }}</p>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="login__text">{{ form.password2.label }}</p>
+            <p class="section__text">{{ form.password2.label }}</p>
             {{ form.password2(size=32) }}<br>
             {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-</div>
 {% endblock %}

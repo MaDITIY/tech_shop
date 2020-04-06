@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="catalog">
-            <div class="wrapper">
-                <div class="catalog__table">
-                    {% for type in types %}
-                        {% include '_product_type.html' %}
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
+    <div class="catalog__table">
+        {% for type in types %}
+            {% include '_product_type.html' %}
+        {% endfor %}
+    </div>
 {% endblock %}

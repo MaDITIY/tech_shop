@@ -1,59 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="profile">
-    <div class="wrapper">
-        <div class="profile__personality">
-            <p class="profile__personality__name">{{ user.username }}</p>
-            <p class="profile__personality__status">{{ user.rang.name }}</p>
-            <p class="profile__personality__balance">Balance: {{ user.bank }}</p>
+<div class="profile__personality">
+    <p class="section__name">{{ user.username }}</p>
+    <p class="profile__status">{{ user.rang.name }}</p>
+    <p class="profile__balance">Balance: {{ user.bank }}</p>
+</div>
+<div class="profile__table">
+    <div class="profile__photo"><img src="../static/5bbe5b813ffd5.jpg" alt="photo"></div>
+    <div class="profile__information">
+        {% if user.about_me %}
+        <div class="profile__table__information__about">
+            <p class="section__title">About</p>
+            <p class="section__text">{{ user.about_me }}</p>
         </div>
-        <div class="profile__table">
-            <div class="profile__table__photo"><img src="https://instaturbo.ru/images/blog/5bbe5b813ffd5.jpg" alt="photo"></div>
-            <div class="profile__table__information">
-                {% if user.about_me %}
-                <div class="profile__table__information__about">
-                    <p class="information__title">About</p>
-                    <p class="information__text">{{ user.about_me }}</p>
-                </div>
-                {% endif %}
-                <div class="profile__table__information__about">
-                    <p class="information__title">Contacts</p>
-                    <p class="information__text">+375295555555</p>
-                    <a class="information__text" href="https://vk.com/chval9">VK</a>
-                </div>
-                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-                {% if current_user.id == user.id %}
-                    <div class="profile__table__information__about">
-                        <p class="information__title">Orders</p>
+        {% endif %}
+        <div class="profile__table__information__about">
+            <p class="section__title">Contacts</p>
+            <p class="section__text">+375295555555</p>
+            <a class="section__text" href="https://vk.com/chval9">VK</a>
+        </div>
+        <p class="edit-profile"><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+        {% if current_user.id == user.id %}
+            <div class="profile__table__information__about">
+                <p class="section__title">Orders</p>
 
-                        <div class="information__text information__orders__header information__orders">
-                            <p>Type</p>
-                            <p>Model</p>
-                            <p>Cost $</p>
-                            <p>Amount</p>
-                            <p>Total $</p>
-                        </div>
-                        {% for order in orders %}
-                        <div class="information__text information__orders">
-                            <p>{{ order.product.type.name }}</p>
-                            <p>{{ order.product.model }}</p>
-                            <p>{{ order.product.price }}</p>
-                            <p>{{ order.count }}</p>
-                            <p>{{ order.price }}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% if prev_url %}
-                    <a href="{{ prev_url }}">Newer orders</a>
-                    {% endif %}
-                    {% if next_url %}
-                    <a href="{{ next_url }}">Older orders</a>
-                    {% endif %}
+                <div class="section__text profile__orders__header profile__orders">
+                    <p>Type</p>
+                    <p>Model</p>
+                    <p>Cost $</p>
+                    <p>Amount</p>
+                    <p>Total $</p>
+                </div>
+                {% for order in orders %}
+                <div class="section__text profile__orders">
+                    <p>{{ order.product.type.name }}</p>
+                    <p>{{ order.product.model }}</p>
+                    <p>{{ order.product.price }}</p>
+                    <p>{{ order.count }}</p>
+                    <p>{{ order.price }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="arrows">
+                {% if prev_url %}
+                <a href="{{ prev_url }}">&lt;</a>
+                {% else %}
+                <a>&lt;</a>
+                {% endif %}
+                {% if next_url %}
+                <a href="{{ next_url }}">&gt;</a>
                 {% endif %}
             </div>
-        </div>
+        {% endif %}
     </div>
-</section>
+</div>
 
 {% endblock %}

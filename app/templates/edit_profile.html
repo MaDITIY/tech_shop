@@ -1,22 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="edit">
-    <h1 class="edit__name">Edit Profile</h1>
-    <form class="edit__form" action="" method="post">
+    <p class="section__name register">Edit Profile</p>
+    <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            <p class="edit__text">{{ form.username.label }}</p>
+            <p class="section__text">{{ form.username.label }}</p>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            <p class="edit__text">{{ form.about_me.label }}</p>
+            <p class="section__text">{{ form.about_me.label }}</p>
             {{ form.about_me(cols=50, rows=4) }}<br>
             {% for error in form.about_me.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>

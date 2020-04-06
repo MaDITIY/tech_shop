@@ -1,12 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p class="order__name">Welcome to admin page</p>
-    <a href="{{ url_for('manage_users') }}">Users</a>/
-    <a href="{{ url_for('manage_types') }}">Produc Types</a>/
-    <a href="{{ url_for('create_product_type') }}">Create product type</a>/
-    <a href="{{ url_for('manage_manufacturers') }}">Manufacturers</a>/
-    <a href="{{ url_for('create_manufacturer') }}">Add manufacturer</a>/
-    <a href="{{ url_for('create_product') }}">Create product</a>/
+    <img class="burger" src="../static/iconfinder_menu-alt_134216.png" alt="burger">
+    <p class="section__name admin">Welcome to admin page</p>
+    <div class="admin-nav">
+        <div class="admin-nav__list">
+            <a href="{{ url_for('manage_users') }}">Users</a>
+            <a href="{{ url_for('manage_types') }}">Produc Types</a>
+            <a href="{{ url_for('create_product_type') }}">Create product type</a>
+            <a href="{{ url_for('manage_manufacturers') }}">Manufacturers</a>
+            <a href="{{ url_for('create_manufacturer') }}">Add manufacturer</a>
+            <a href="{{ url_for('create_product') }}">Create product</a>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.burger').addEventListener('click', (e)=>{
+            if (document.querySelector('.burger').classList.length==2) {
+                document.querySelector('.burger').classList.remove('burger-click');
+                document.querySelector('.admin-nav').classList.remove('admin-nav-click');
+                document.querySelector('.admin').classList.remove('admin-left');
+                if(document.querySelector('.admin__page')) document.querySelector('.admin__page').classList.remove('admin__page-left');
+            }
+            else {
+                document.querySelector('.burger').classList.add('burger-click');
+                document.querySelector('.admin-nav').classList.add('admin-nav-click');
+                document.querySelector('.admin').classList.add('admin-left');
+                if(document.querySelector('.admin__page')) document.querySelector('.admin__page').classList.add('admin__page-left');
+            }
+        });
+    </script>
     {% block app_block %}{% endblock %}
 {% endblock %}
