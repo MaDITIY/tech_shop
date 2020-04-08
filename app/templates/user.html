@@ -29,18 +29,22 @@
                     <p>№</p>
                     <p>Type</p>
                     <p>Model</p>
+                    <p>Manufacturer</p>
                     <p>Cost $</p>
                     <p>Amount</p>
                     <p>Total $</p>
+                    <p>Date</p>
                 </div>
                 {% for order in orders %}
                 <div class="section__text profile__orders">
                     <p class="number"></p>
                     <p>{{ order.product.type.name }}</p>
                     <p>{{ order.product.model }}</p>
+                    <p>{{ order.product.manufacturer.name }}</p>
                     <p>{{ order.product.price }}</p>
                     <p>{{ order.count }}</p>
                     <p>{{ order.price }}</p>
+                    <p>{{ order.date }}</p>
                 </div>
                 {% endfor %}
             </div>
