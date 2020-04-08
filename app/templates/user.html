@@ -4,7 +4,7 @@
 <div class="profile__personality">
     <p class="section__name">{{ user.username }}</p>
     <p class="profile__status">{{ user.rang.name }}</p>
-    <p class="profile__balance">Balance: {{ user.bank }}</p>
+    <p class=" section__text profile__balance">Balance: {{ user.bank }} $</p>
 </div>
 <div class="profile__table">
     <div class="profile__photo"><img src="../static/5bbe5b813ffd5.jpg" alt="photo"></div>
@@ -24,7 +24,7 @@
         {% if current_user.id == user.id %}
             <div class="profile__table__information__about">
                 <p class="section__title">Orders</p>
-
+                {% if orders %}
                 <div class="section__title profile__orders__header profile__orders">
                     <p>№</p>
                     <p>Type</p>
@@ -47,23 +47,24 @@
                     <p>{{ order.date }}</p>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="arrows">
-                {% if prev_url %}
-                <a href="{{ prev_url }}" class="arrow__left arrow">&lt;</a>
-                {% else %}
-                <a class="arrow__block">&lt;</a>
+                </div>
+                <div class="arrows">
+                    {% if prev_url %}
+                    <a href="{{ prev_url }}" class="arrow__left arrow">&lt;</a>
+                    {% else %}
+                    <a class="arrow__block">&lt;</a>
+                    {% endif %}
+                    <p  class="page">{{ page }}</p>
+                    {% if next_url %}
+                    <a href="{{ next_url }}" class="arrow__right arrow">&gt;</a>
+                    {% else %}
+                    <a class="arrow__block">&gt;</a>
+                    {% endif %}
+                </div>
+                <script src="../static/src/numeration.js"></script>
                 {% endif %}
-                <p  class="page">{{ page }}</p>
-                {% if next_url %}
-                <a href="{{ next_url }}" class="arrow__right arrow">&gt;</a>
-                {% else %}
-                <a class="arrow__block">&gt;</a>
-                {% endif %}
-            </div>
         {% endif %}
     </div>
 </div>
-<script src="../static/src/numeration.js"></script>
 
 {% endblock %}
