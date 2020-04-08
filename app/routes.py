@@ -137,7 +137,7 @@ def get_order():
         if form.get_reciept.data:
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         return render_template(
-            'order.html', title='Order Page', form=form
+            'order.html', title='Order Page', form=form, price=price, onePrice=product.price;
         )
     elif request.method == 'GET':
         model = request.args.get('model')

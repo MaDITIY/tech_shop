@@ -388,7 +388,7 @@ input, select, textarea {
     margin: 5px 0 0 10px;
 }
 
-.product-type-input {
+.product-type-input, #product_type, #model, #product_count {
     height: 35px;
     width: 30%;
     padding-left: 10px;
