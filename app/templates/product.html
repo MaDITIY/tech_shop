@@ -5,21 +5,20 @@
     {% if products %}
         <div class="section__title product__orders__header product__orders">
             <p>№</p>
-            <p>Manufacturer</p>
             <p>Model</p>
-            <p>Count</p>
+            <p>Manufacturer</p>
             <p>Cost $</p>
+            <p>Count</p>
             <p>Buy HERE!</p>
         </div>
         {% for product in products %}
         <div class="section__text product__orders">
             <p class="number"></p>
-            <!-- manufacturer.name!-->
-            <p></p>
             <p>{{ product.model }}</p>
-            <p>{{ product.count }}</p>
+            <p>{{ product.manufacturer.name }}</p>
             <p>{{ product.price }}</p>
-            <p><a href="{{ url_for('get_order', model=product.model, type=product.type) }}">Buy me!</a></p>
+            <p>{{ product.count }}</p>
+            <p><a href="{{ url_for('get_order', model=product.model, type=product.type.name) }}">Buy me!</a></p>
         </div>
         {% endfor %}
         <div class="arrows">

@@ -137,16 +137,23 @@ def get_order():
         if form.get_reciept.data:
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         return render_template(
-            'order.html', title='Order Page', form=form, price=price, onePrice=product.price;
+            'order.html', title='Order Page', form=form
         )
     elif request.method == 'GET':
         model = request.args.get('model')
         type = request.args.get('type')
+        pr_type = Type.query.filter(
+            Type.name == type.lower()
+        ).first()
+        product = Product.query.filter(
+            Product.model == model,
+            Product.type_id == pr_type.id
+        ).first()
         if model and type:
             form.model.data = model
             form.product_type.data = type
     return render_template(
-        'order.html', title='Order Page', form=form
+        'order.html', title='Order Page', form=form, one_price=product.price
     )
 
 
@@ -169,7 +176,7 @@ def product(product_name):
         if products.has_prev else None
     return render_template(
         'product.html', title='{} page'.format(product_name),
-        products=products.items, next_url=next_url, prev_url=prev_url)
+        products=products.items, next_url=next_url, prev_url=prev_url, page=page)
 
 
 @app.route('/admin')

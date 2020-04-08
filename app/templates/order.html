@@ -32,5 +32,11 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
+        <div class="order-info__block">
+            <p class="dynamic-balance">Your balance: <span>{{ current_user.bank }}</span> $</p>
+            <p class="dynamic-price-value">Cost: <span>{{ one_price }}</span> $</p>
+            <p class="dynamic-price">Total: 0 $</p>
+        </div>
     </form>
+    <script src="../static/src/dynamic.js"></script>
 {% endblock %}
