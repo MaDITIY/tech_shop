@@ -1,10 +1,10 @@
-Receipt from TechShop company:
-----------------------------------
-Product type: cleaners
-Product Model: ph-342
-Time of deal: 2020-04-06 13:13:03
-Product count: 90
-Product cost: 400
-Total cost: 36000 $
-----------------------------------
+Receipt from TechShop company:
+----------------------------------
+Product type: frige
+Product Model: 1h5h
+Time of deal: 2020-04-06 16:37:51
+Product count: 767
+Product cost: 500
+Total cost: 383500 $
+----------------------------------
 Thank you!
