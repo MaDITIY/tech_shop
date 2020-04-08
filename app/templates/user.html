@@ -15,10 +15,10 @@
             <p class="section__text">{{ user.about_me }}</p>
         </div>
         {% endif %}
-        <div class="profile__table__information__about">
-            <p class="section__title">Contacts</p>
-            <p class="section__text">+375295555555</p>
-            <a class="section__text" href="https://vk.com/chval9">VK</a>
+        <div>
+            <p class="section__title">Total statistic</p>
+            <p class="section__text">Total count of products: {{ total_bought }}</p>
+            <p class="section__text">Total money spent: {{ total_spent }} $</p>
         </div>
         <p class="edit-profile"><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
         {% if current_user.id == user.id %}

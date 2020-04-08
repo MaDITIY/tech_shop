@@ -7,6 +7,7 @@ from app.utils import admin_required, generate_reciept, \
     set_role, delete_users, delete_types, delete_manufacturers, add_product
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
+from sqlalchemy.sql import func
 from werkzeug.urls import url_parse
 
 
@@ -66,13 +67,19 @@ def user(username):
     ).order_by(Order.date.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
+    total_bought = Order.query.filter(
+        Order.user_id == user.id
+    ).count()
+    total_spent = db.session.query(func.sum(Order.price)).filter(
+        Order.user_id == user.id,
+    ).scalar()
     next_url = url_for('user', username=current_user.username, page=orders.next_num) \
         if orders.has_next else None
     prev_url = url_for('user', username=current_user.username, page=orders.prev_num) \
         if orders.has_prev else None
     return render_template(
-        'user.html', user=user, orders=orders.items,
-        next_url=next_url, prev_url=prev_url, page=page
+        'user.html', user=user, orders=orders.items, total_bought=total_bought,
+        next_url=next_url, prev_url=prev_url, page=page, total_spent=total_spent
     )
 
 

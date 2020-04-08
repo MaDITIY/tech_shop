@@ -177,7 +177,7 @@ ul {
 .profile__orders {
     display: grid;
     width: 100%;
-    grid-template-columns: 4% 15% 17% 17% 13% 8% 10% 16%;
+    grid-template-columns: 4% 13% 17% 17% 13% 10% 10% 16%;
 }
 
 .profile__orders p:first-child, .product__orders p:first-child, .user__table p:first-child, .product-type__table p:first-child, .manufactuters__table p:first-child {
