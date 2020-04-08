@@ -72,7 +72,7 @@ def user(username):
         if orders.has_prev else None
     return render_template(
         'user.html', user=user, orders=orders.items,
-        next_url=next_url, prev_url=prev_url
+        next_url=next_url, prev_url=prev_url, page=page
     )
 
 

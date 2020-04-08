@@ -6,5 +6,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TEMPLATES_AUTO_RELOAD = True
     SEND_FILE_MAX_AGE_DEFAULT = 0
-    POSTS_PER_PAGE = 10
+    POSTS_PER_PAGE = 8
     UPLOAD_FOLDER = 'uploads'

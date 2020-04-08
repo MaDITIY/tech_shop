@@ -176,23 +176,22 @@ ul {
 
 .profile__orders {
     display: grid;
-    width: 80%;
-    grid-template-columns: 20% 30% 10% 15% 25%;
+    width: 90%;
+    grid-template-columns: 5% 20% 30% 10% 10% 25%;
 }
 
-.profile__orders p:first-child, .product__orders p:first-child {
+.profile__orders p:first-child, .product__orders p:first-child, .user__table p:first-child {
     border-left: 2px solid #434e74;
 }
 
-.profile__orders p, .product__orders p {
+.profile__orders p, .product__orders p, .user__table p {
     border-right: 2px solid #434e74;
     border-bottom: 2px solid #434e74;
     padding-left: 2px;
 }
 
-.profile__orders__header {
+.profile__orders__header p, .product__orders__header p, .user__table__header p {
     border-top: 2px solid #434e74;
-    font-weight: 400;
 }
 
 .product__orders {
@@ -202,6 +201,12 @@ ul {
     grid-template-columns: 30% 30% 25% 20%;
 }
 
+.user__table {
+    display: grid;
+    padding-right: 43px;
+    width: 100%;
+    grid-template-columns: 6% 5% 24% 30% 10% 15% 10%;
+}
 .register {
     padding-left: 0;
     padding-bottom: 20px;
@@ -222,16 +227,16 @@ input, select, textarea {
     border-radius: 5px;
 }
 
-#remember_me {
+#remember_me, #get_reciept {
 	opacity: 0;
 	margin: 30px 0 0 -10px;
 }
-#remember_me + label {
+#remember_me + label, #get_reciept+label {
 	position: relative;
 	padding: 0 0 0 60px;
 	cursor: pointer;
 }
-#remember_me + label:before {
+#remember_me + label:before, #get_reciept + label:before {
 	content: '';
 	position: absolute;
 	top: -4px;
@@ -243,7 +248,7 @@ input, select, textarea {
 	box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
 	transition: .2s;
 }
-#remember_me + label:after {
+#remember_me + label:after, #get_reciept + label:after {
 	content: '';
 	position: absolute;
 	top: -2px;
@@ -255,13 +260,13 @@ input, select, textarea {
 	box-shadow: 0 2px 5px rgba(0,0,0,.3);
 	transition: .2s;
 }
-#remember_me:checked + label:before {
+#remember_me:checked + label:before, #get_reciept:checked + label:before {
 	background: #d2b6d4;
 }
-#remember_me:checked + label:after {
+#remember_me:checked + label:after, #get_reciept:checked + label:after {
 	left: 26px;
 }
-#remember_me:focus + label:before {
+#remember_me:focus + label:before, #get_reciept:focus + label:before {
 	box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 3px rgba(38, 30, 68, 0.7);
 }
 
@@ -335,6 +340,7 @@ input, select, textarea {
 
 .admin__page {
     position: absolute;
+    width: 80%;
     left: 165px;
     top: 100px;
     transition: 200ms linear;
@@ -351,11 +357,21 @@ input, select, textarea {
     width: 200px;
 }
 
-.arrows a {
+.arrow, .arrow__block, .page {
     font-size: 40px;
     font-weight: 700;
 }
 
-.arrows a:hover {
+.arrow:hover {
     color: #fff;
+}
+
+.arrow__block {
+    color: gray;
+}
+
+.simple-checkbox__main, .simple-checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 0 10px;
 }
