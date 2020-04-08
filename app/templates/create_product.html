@@ -3,21 +3,21 @@
 {% block app_block %}
 <div class="admin__page">
     <form action="/admin/create_product" method="POST">
-        <p>Please choose required parameters of product</p>
-        <select name="type" required>
+        <p class="section__title">Please choose required parameters of product</p>
+        <select class="product-type-input-small" name="type" required>
             {% for type in types %}
                 <option value="{{ type.name }}">{{ type.name }}</option>
             {% endfor %}
         </select>
-        <select name="manufacturer" required>
+        <select class="product-type-input-small" name="manufacturer" required>
             {% for manufacturer in manufacturers %}
                 <option value="{{ manufacturer.name }}">{{ manufacturer.name }}</option>
             {% endfor %}
         </select>
-        <input type="text" name="model" id="model" required>
-        <input type="number" name="price" required>
-        <input type="number" name="count">
-        <input type="submit" value="Create">
+        <input class="product-type-input-small" type="text" name="model" id="model" placeholder="Model" required>
+        <input class="product-type-input-small" type="number" name="price" placeholder="Price" required>
+        <input class="product-type-input-small" type="number" name="count" placeholder="Count">
+        <input id="submit" type="submit" value="Create">
     </form>
 </div>
 {% endblock %}

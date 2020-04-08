@@ -150,7 +150,7 @@ a {
     row-gap: 15px;
 }
 
-.section__title {
+.section__title, li {
     font-family: "Open Sans", sans-serif;
     color: #434e74;
     font-size: 20px;
@@ -391,5 +391,12 @@ input, select, textarea {
 .product-type-input {
     height: 35px;
     width: 30%;
+    padding-left: 10px;
+}
+
+.product-type-input-small {
+    margin-top: 20px;
+    height: 35px;
+    width: 15%;
     padding-left: 10px;
 }
