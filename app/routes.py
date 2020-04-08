@@ -2,7 +2,7 @@ import os
 
 from app import app, db
 from app.models import User, Order, Product, Type, Roles, Manufacturer
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, OrderForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.utils import admin_required, generate_reciept, \
     set_role, delete_users, delete_types, delete_manufacturers, add_product
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
@@ -93,26 +93,23 @@ def edit_profile():
         'edit_profile.html', title='Edit Profile', form=form
     )
 
+
 @app.route('/order', methods=['GET', 'POST'])
 @login_required
 def get_order():
-    choises = [(type.name, type.name) for type in Type.query.all()]
-    form = OrderForm(choises)
-    if form.validate_on_submit():
-        type = Type.query.filter(
-            Type.name == form.product_type.data
+    if request.method == 'POST':
+        type = request.form['product_type']
+        product_type = Type.query.filter(
+            Type.name == type
         ).one()
-        model = form.model.data
+        model = request.form['model']
         product = Product.query.filter(
             Product.model == model,
-            Product.type_id == type.id
+            Product.type_id == product_type.id
         ).first()
-        if product is None:
-            flash('Sorry, we don\'t have such product. Please check input fields')
-            return render_template(
-                'order.html', title='Order Page', form=form
-            )
-        count = int(form.product_count.data)
+        one_price = product.price
+        count = int(request.form['count'])
+        price = one_price * count
         if product.count < count:
             flash(
                 'Currently we don\'t have so much products. '
@@ -120,26 +117,34 @@ def get_order():
                 'We will buy more in some time'
             )
             return render_template(
-                'order.html', title='Order Page', form=form
+                'order.html', title='Order Page', model=model, type=type, one_price=one_price
+            )
+        if current_user.bank < price:
+            flash(
+                "Sorry, you don't have enough money for this order."
+            )
+            return render_template(
+                'order.html', title='Order Page', model=model, type=type, one_price=one_price
             )
         order = Order(
             user_id=current_user.id,
             product=product,
             count=count,
-            price=product.price * count
+            price=price
         )
         product.count -= count
+        current_user.bank = current_user.bank - price
         db.session.add(order)
         db.session.commit()
-        generate_reciept(order)
-        uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
         flash('You successfully bought {}'.format(product.model))
-        if form.get_reciept.data:
+        if request.args.get('get_reciept') == 'y':
+            generate_reciept(order)
+            uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         return render_template(
-            'order.html', title='Order Page', form=form
+            'order.html', title='Order Page', model=model, type=type, one_price=one_price
         )
-    elif request.method == 'GET':
+    else:
         model = request.args.get('model')
         type = request.args.get('type')
         pr_type = Type.query.filter(
@@ -149,12 +154,9 @@ def get_order():
             Product.model == model,
             Product.type_id == pr_type.id
         ).first()
-        if model and type:
-            form.model.data = model
-            form.product_type.data = type
-    return render_template(
-        'order.html', title='Order Page', form=form, one_price=product.price
-    )
+        return render_template(
+            'order.html', title='Order Page', model=model, type=type, one_price=product.price
+        )
 
 
 @app.route('/product/<product_name>')

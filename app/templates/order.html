@@ -2,36 +2,23 @@
 
 {% block content %}
     <p class="section__name register">Choose your product</p>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
+    <form action="/order" method="post">
         <p>
-            <p class="section__text">{{ form.product_type.label }}</p>
-            {{ form.product_type() }}<br>
-            {% for error in form.product_type.errors %}
-            <span class="error" style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <p class="section__text">Product Type</p>
+            <input type="text" name="product_type" value="{{ type }}" readonly>
         </p>
         <p>
-            <p class="section__text">{{ form.model.label }}</p>
-            {{ form.model() }}<br>
-            {% for error in form.model.errors %}
-            <span class="error" style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <p class="section__text">Model</p>
+            <input type="text" name="model" value="{{ model }}" readonly>
         </p>
         <p>
-            <p class="section__text">{{ form.product_count.label }}</p>
-            {{ form.product_count() }}<br>
-            {% for error in form.product_count.errors %}
-            <span class="error" style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <p class="section__text">Count</p>
+            <input type="number" id="product_count" name="count" max="1000" min="0">
         </p>
         <p>
-            <p class="section__text"> {{ form.get_reciept }} {{ form.get_reciept.label }}</p>
-            {% for error in form.get_reciept.errors %}
-            <span class="error" style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <input id="get_reciept" name="get_reciept" type="checkbox" value="y">
         </p>
-        <p>{{ form.submit() }}</p>
+        <p><input id="submit" type="submit" name="submit" value="Buy"></p>
         <div class="order-info__block">
             <p class="dynamic-balance">Your balance: <span>{{ current_user.bank }}</span> $</p>
             <p class="dynamic-price-value">Cost: <span>{{ one_price }}</span> $</p>

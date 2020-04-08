@@ -1,23 +1,7 @@
 from app.models import User
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, SelectField, IntegerField
-from wtforms.validators import DataRequired, ValidationError, EqualTo, Email, Length, NumberRange
-
-
-class OrderForm(FlaskForm):
-    product_type = SelectField('Product Type')
-    model = StringField('Model', validators=[DataRequired()])
-    product_count = IntegerField('Count', validators=[
-        NumberRange(min=1, max=1000, message='You can by only 0-1000 products'), DataRequired()
-    ])
-    get_reciept = BooleanField('Get reciept')
-    submit = SubmitField('Buy')
-
-
-    def __init__(self, choises, *args, **kwargs):
-        super(OrderForm, self).__init__(*args, **kwargs)
-        self.product_type.choices = choises
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, ValidationError, EqualTo, Email, Length
 
 
 class LoginForm(FlaskForm):
