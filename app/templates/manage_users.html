@@ -3,31 +3,30 @@
 {% block app_block %}
 <div class="admin__page">
     <form action="/admin/users" method="POST">
-        <table border=5px>
-            <tr>
-                <th>Checkbox lisogo</th>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Balance</th>
-                <th>Rang</th>
-                <th>Role</th>
-            </tr>
-            {% for user in users %}
-                <tr>
-                    <td><input type="checkbox" name="users" value="{{ user.id }}"></td>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.bank }}</td>
-                    <td>{{ user.rang.name }}</td>
-                    <td>{{ user.role.name }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" name="admin" value="Set Admin">
-        <input type="submit" name="reader" value="Set Reader">
-        <input type="submit" name="delete" value="Delete">
+        <div class="section__title user__table__header user__table">
+            <p><input class="simple-checkbox__main" type="checkbox" name="users"></p>
+            <p>ID</p>
+            <p>Username</p>
+            <p>Email</p>
+            <p>Balance</p>
+            <p>Rang</p>
+            <p>Role</p>
+        </div>
+        {% for user in users %}
+        <div class="section__text user__table">
+            <p><input class="simple-checkbox" type="checkbox" name="users" value="{{ user.id }}"></p>
+            <p>{{ user.id }}</p>
+            <p>{{ user.username }}</p>
+            <p>{{ user.email }}</p>
+            <p>{{ user.bank }}</p>
+            <p>{{ user.rang.name }}</p>
+            <p>{{ user.role.name }}</p>
+        </div>
+        {% endfor %}
+        <input id="submit" type="submit" name="admin" value="Set Admin">
+        <input id="submit" type="submit" name="reader" value="Set Reader">
+        <input id="submit" type="submit" name="delete" value="Delete">
     </form>
 </div>
+<script src="../static/src/checkbox.js"></script>
 {% endblock %}

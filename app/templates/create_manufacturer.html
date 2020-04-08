@@ -3,10 +3,10 @@
 {% block app_block %}
 <div class="admin__page">
     <form action="/admin/create_manufacturer" method="POST">
-        <p>Please input manufactorer name and ambassador</p>
-        <input type="text" name="name" id="name" required>
-        <input type="text" name="ambassador" id="amb" required>
-        <input type="submit" name="delete" value="Create">
+        <p class="section__title">Please input manufactorer name and ambassador</p>
+        <input class="product-type-input" type="text" name="name" id="name" required>
+        <input class="product-type-input" type="text" name="ambassador" id="amb" required>
+        <input id="submit" type="submit" name="delete" value="Create">
     </form>
 </div>
 {% endblock %}

@@ -23,7 +23,6 @@
                 <a href="{{ url_for('register') }}">Sing Up</a>
                 {% else %}
                 <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-                <a href="{{ url_for('get_order') }}">Order</a>
                     {% if current_user.is_admin() %}
                     <a href="{{ url_for('admin') }}">Admin Page</a>
                     {% endif %}
@@ -48,14 +47,5 @@
             </div>
         </section>
     </main>
-<!--<script>-->
-<!--    let but = document.getElementById('submit');-->
-<!--    document.addEventListener('click',(e)=>{-->
-<!--        if(e.target==but) {-->
-<!--            document.location.href="order.html"-->
-<!--        }-->
-<!--    })-->
-<!--    // document.getElementById('submit').preventDefault();-->
-<!--</script>-->
 </body>
 </html>

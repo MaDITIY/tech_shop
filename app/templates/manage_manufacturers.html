@@ -3,23 +3,22 @@
 {% block app_block %}
 <div class="admin__page">
     <form action="/admin/manufacturers" method="POST">
-        <table border=5px>
-            <tr>
-                <th>Checkbox lisogo</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Ambassador</th>
-            </tr>
-            {% for manufacturer in manufacturers %}
-                <tr>
-                    <td><input type="checkbox" name="manufacturers" value="{{ manufacturer.id }}"></td>
-                    <td>{{ manufacturer.id }}</td>
-                    <td>{{ manufacturer.name }}</td>
-                    <td>{{ manufacturer.ambassador }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" name="delete" value="Delete">
+        <div class="section__title manufactuters__table__header manufactuters__table">
+            <p><input class="simple-checkbox__main" type="checkbox" name="types"></p>
+            <p>ID</p>
+            <p>Name</p>
+            <p>Ambassador</p>
+        </div>
+        {% for manufacturer in manufacturers %}
+        <div class="section__text manufactuters__table">
+            <p><input class="simple-checkbox" type="checkbox" name="manufacturers" value="{{ manufacturer.id }}"></p>
+            <p>{{ manufacturer.id }}</p>
+            <p>{{ manufacturer.name }}</p>
+            <p>{{ manufacturer.ambassador }}</p>
+        </div>
+        {% endfor %}
+        <input id="submit" type="submit" name="delete" value="Delete">
     </form>
 </div>
+<script src="../static/src/checkbox.js"></script>
 {% endblock %}

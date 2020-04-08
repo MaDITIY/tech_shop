@@ -2,9 +2,9 @@ Receipt from TechShop company:
 ----------------------------------
 Product type: cleaners
 Product Model: ph-342
-Time of deal: 2020-04-06 13:13:03
-Product count: 90
+Time of deal: 2020-04-08 02:02:27
+Product count: 4
 Product cost: 400
-Total cost: 36000 $
+Total cost: 1600 $
 ----------------------------------
 Thank you!
