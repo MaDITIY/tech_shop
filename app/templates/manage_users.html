@@ -12,18 +12,17 @@
             <p>Rang</p>
             <p>Role</p>
         </div>
-            {% for user in users %}
-            <div class="section__text user__table">
-                <p><input class="simple-checkbox" type="checkbox" name="users" value="{{ user.id }}"></p>
-                <p>{{ user.id }}</p>
-                <p>{{ user.username }}</p>
-                <p>{{ user.email }}</p>
-                <p>{{ user.bank }}</p>
-                <p>{{ user.rang.name }}</p>
-                <p>{{ user.role.name }}</p>
-            </div>
-            {% endfor %}
-        </table>
+        {% for user in users %}
+        <div class="section__text user__table">
+            <p><input class="simple-checkbox" type="checkbox" name="users" value="{{ user.id }}"></p>
+            <p>{{ user.id }}</p>
+            <p>{{ user.username }}</p>
+            <p>{{ user.email }}</p>
+            <p>{{ user.bank }}</p>
+            <p>{{ user.rang.name }}</p>
+            <p>{{ user.role.name }}</p>
+        </div>
+        {% endfor %}
         <input id="submit" type="submit" name="admin" value="Set Admin">
         <input id="submit" type="submit" name="reader" value="Set Reader">
         <input id="submit" type="submit" name="delete" value="Delete">

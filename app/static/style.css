@@ -180,17 +180,17 @@ ul {
     grid-template-columns: 5% 20% 30% 10% 10% 25%;
 }
 
-.profile__orders p:first-child, .product__orders p:first-child, .user__table p:first-child, .product-type__table p:first-child {
+.profile__orders p:first-child, .product__orders p:first-child, .user__table p:first-child, .product-type__table p:first-child, .manufactuters__table p:first-child {
     border-left: 2px solid #434e74;
 }
 
-.profile__orders p, .product__orders p, .user__table p, .product-type__table p {
+.profile__orders p, .product__orders p, .user__table p, .product-type__table p, .manufactuters__table p {
     border-right: 2px solid #434e74;
     border-bottom: 2px solid #434e74;
     padding-left: 2px;
 }
 
-.profile__orders__header p, .product__orders__header p, .user__table__header p, .product-type__table__header p {
+.profile__orders__header p, .product__orders__header p, .user__table__header p, .product-type__table__header p, .manufactuters__table__header p {
     border-top: 2px solid #434e74;
 }
 
@@ -211,6 +211,12 @@ ul {
     grid-template-columns: 10% 10% 60%;
     width: 50%;
     display: grid;
+}
+
+.manufactuters__table {
+    display: grid;
+    width: 60%;
+    grid-template-columns: 10% 10% 40% 40%;
 }
 
 .register {
