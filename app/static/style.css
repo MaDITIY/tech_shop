@@ -176,8 +176,8 @@ ul {
 
 .profile__orders {
     display: grid;
-    width: 90%;
-    grid-template-columns: 5% 20% 30% 10% 10% 25%;
+    width: 100%;
+    grid-template-columns: 4% 15% 17% 17% 13% 8% 10% 16%;
 }
 
 .profile__orders p:first-child, .product__orders p:first-child, .user__table p:first-child, .product-type__table p:first-child, .manufactuters__table p:first-child {
@@ -188,6 +188,7 @@ ul {
     border-right: 2px solid #434e74;
     border-bottom: 2px solid #434e74;
     padding-left: 2px;
+    align-items: center;
 }
 
 .profile__orders__header p, .product__orders__header p, .user__table__header p, .product-type__table__header p, .manufactuters__table__header p {
@@ -388,7 +389,7 @@ input, select, textarea {
     margin: 5px 0 0 10px;
 }
 
-.product-type-input, #product_type, #model, #product_count {
+.product-type-input, #product_type, #model, #product_count, #username, #password, #email, #password2 {
     height: 35px;
     width: 30%;
     padding-left: 10px;
