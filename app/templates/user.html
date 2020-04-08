@@ -25,7 +25,8 @@
             <div class="profile__table__information__about">
                 <p class="section__title">Orders</p>
 
-                <div class="section__text profile__orders__header profile__orders">
+                <div class="section__title profile__orders__header profile__orders">
+                    <p>№</p>
                     <p>Type</p>
                     <p>Model</p>
                     <p>Cost $</p>
@@ -34,6 +35,7 @@
                 </div>
                 {% for order in orders %}
                 <div class="section__text profile__orders">
+                    <p class="number"></p>
                     <p>{{ order.product.type.name }}</p>
                     <p>{{ order.product.model }}</p>
                     <p>{{ order.product.price }}</p>
@@ -44,16 +46,20 @@
             </div>
             <div class="arrows">
                 {% if prev_url %}
-                <a href="{{ prev_url }}">&lt;</a>
+                <a href="{{ prev_url }}" class="arrow__left arrow">&lt;</a>
                 {% else %}
-                <a>&lt;</a>
+                <a class="arrow__block">&lt;</a>
                 {% endif %}
+                <p  class="page">{{ page }}</p>
                 {% if next_url %}
-                <a href="{{ next_url }}">&gt;</a>
+                <a href="{{ next_url }}" class="arrow__right arrow">&gt;</a>
+                {% else %}
+                <a class="arrow__block">&gt;</a>
                 {% endif %}
             </div>
         {% endif %}
     </div>
 </div>
+<script src="../static/src/numeration.js"></script>
 
 {% endblock %}

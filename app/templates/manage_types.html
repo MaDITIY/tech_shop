@@ -3,21 +3,20 @@
 {% block app_block %}
 <div class="admin__page">
     <form action="/admin/types" method="POST">
-        <table border=5px>
-            <tr>
-                <th>Checkbox lisogo</th>
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
-            {% for type in types %}
-                <tr>
-                    <td><input type="checkbox" name="types" value="{{ type.id }}"></td>
-                    <td>{{ type.id }}</td>
-                    <td>{{ type.name }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" name="delete" value="Delete">
+        <div class="section__title product-type__table__header product-type__table">
+            <p><input class="simple-checkbox__main" type="checkbox" name="types"></p>
+            <p>ID</p>
+            <p>Name</p>
+        </div>
+        {% for type in types %}
+        <div class="section__text product-type__table">
+            <p><input class="simple-checkbox" type="checkbox" name="types" value="{{ type.id }}"></p>
+            <p>{{ type.id }}</p>
+            <p>{{ type.name }}</p>
+        </div>
+        {% endfor %}
+        <input id="submit" type="submit" name="delete" value="Delete">
     </form>
 </div>
+<script src="../static/src/checkbox.js"></script>
 {% endblock %}

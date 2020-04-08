@@ -6,5 +6,18 @@ Time of deal: 2020-04-06 16:37:51
 Product count: 767
 Product cost: 500
 Total cost: 383500 $
+
+Product type: cleaners
+
+Product Model: ph-342
+
+Time of deal: 2020-04-08 02:02:27
+
+Product count: 4
+
+Product cost: 400
+
+Total cost: 1600 $
+
 ----------------------------------
 Thank you!

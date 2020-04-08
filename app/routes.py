@@ -72,7 +72,7 @@ def user(username):
         if orders.has_prev else None
     return render_template(
         'user.html', user=user, orders=orders.items,
-        next_url=next_url, prev_url=prev_url
+        next_url=next_url, prev_url=prev_url, page=page
     )
 
 
@@ -137,7 +137,7 @@ def get_order():
         if form.get_reciept.data:
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
         return render_template(
-            'order.html', title='Order Page', form=form
+            'order.html', title='Order Page', form=form, price=price, onePrice=product.price;
         )
     elif request.method == 'GET':
         model = request.args.get('model')
