@@ -137,7 +137,7 @@ def get_order():
         db.session.add(order)
         db.session.commit()
         flash('You successfully bought {}'.format(product.model))
-        if request.args.get('get_reciept') == 'y':
+        if request.form.get('get_reciept') == 'y':
             generate_reciept(order)
             uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
             return send_from_directory(directory=uploads, filename='reciept.txt', as_attachment=True)
