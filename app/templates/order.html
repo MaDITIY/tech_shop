@@ -25,6 +25,7 @@
             <span class="error" style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>{{ one_price }}</p>
         <p>
             <p class="section__text"> {{ form.get_reciept }} {{ form.get_reciept.label }}</p>
             {% for error in form.get_reciept.errors %}
