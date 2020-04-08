@@ -143,13 +143,12 @@ def get_order():
         model = request.args.get('model')
         type = request.args.get('type')
         pr_type = Type.query.filter(
-            Type.name == type
+            Type.name == type.lower()
         ).first()
         product = Product.query.filter(
             Product.model == model,
             Product.type_id == pr_type.id
         ).first()
-        
         if model and type:
             form.model.data = model
             form.product_type.data = type

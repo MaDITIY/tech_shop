@@ -400,3 +400,17 @@ input, select, textarea {
     width: 15%;
     padding-left: 10px;
 }
+
+.order-info__block {
+    margin-top: -350px;
+    padding-left: 50%;
+}
+.order-info__block p {
+    font-size: 30px;
+    padding-bottom: 20px;
+    color: #bd66b0;
+}
+
+.bad-total {
+    text-decoration: line-through;
+}

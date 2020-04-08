@@ -18,7 +18,7 @@
             <p>{{ product.manufacturer.name }}</p>
             <p>{{ product.price }}</p>
             <p>{{ product.count }}</p>
-            <p><a href="{{ url_for('get_order', model=product.model, type=product.type) }}">Buy me!</a></p>
+            <p><a href="{{ url_for('get_order', model=product.model, type=product.type.name) }}">Buy me!</a></p>
         </div>
         {% endfor %}
         <div class="arrows">
