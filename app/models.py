@@ -45,6 +45,7 @@ class User(UserMixin, db.Model):
     rang = db.Column(db.Enum(Rangs), default=None)
     role = db.Column(db.Enum(Roles), default=Roles.Reader)
     orders = db.relationship('Order', backref='customer', lazy='dynamic')
+    contact = db.Column(db.String(60))
 
     def is_admin(self):
         return self.role == Roles.Admin

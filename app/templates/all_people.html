@@ -1,0 +1,16 @@
+{% extends 'admin.html' %}
+
+{% block app_block %}
+<div class="admin__page">
+    <div class="section__title user__table__header people__table">
+        <p>Name</p>
+        <p>Type</p>
+    </div>
+    {% for person in people %}
+    <div class="section__text people__table">
+        <p>{{ person[1] }}</p>
+        <p>{{ person[0] }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

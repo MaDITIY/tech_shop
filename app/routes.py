@@ -7,7 +7,7 @@ from app.utils import admin_required, generate_reciept, \
     set_role, delete_users, delete_types, delete_manufacturers, add_product
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required, login_user, logout_user
-from sqlalchemy.sql import func
+from sqlalchemy.sql import func, text
 from werkzeug.urls import url_parse
 
 
@@ -285,8 +285,8 @@ def create_product():
 
 
 @app.route('/admin/users', methods=['GET', 'POST'])
-@login_required
 @admin_required
+@login_required
 def manage_users():
     if request.method == 'POST':
         ids = request.form.getlist('users')
@@ -300,3 +300,67 @@ def manage_users():
     return render_template('manage_users.html', title='Admin Page', users=users)
 
 
+@app.route('/admin/people')
+@admin_required
+@login_required
+def all_people():
+    query = text(
+    """
+    SELECT 'User', username FROM user 
+    UNION 
+    SELECT 'Ambassador', ambassador FROM manufacturer
+    """)
+    people = []
+    for row in db.engine.execute(query):
+        people.append((row[0], row[1]))
+    return render_template('all_people.html', title='All People', people=people)
+
+
+@app.route('/admin/man_statistic')
+@admin_required
+@login_required
+def manufacturers_statistic():
+    query = text(
+    """
+    SELECT 
+	m.name,
+        sum(case when quarter(o.date) = 1 then o.count else 0 end) as '1',
+        sum(case when quarter(o.date) = 2 then o.count else 0 end) as '2',
+        sum(case when quarter(o.date) = 3 then o.count else 0 end) as '3',
+        sum(case when quarter(o.date) = 4 then o.count else 0 end) as '4',
+        sum(o.count) total
+    from tech_shop.manufacturer m
+    inner join tech_shop.product p
+        on m.id = p.manufacturer_id
+    inner join tech_shop.order o
+        on p.id = o.product_id
+    GROUP BY m.name
+    ORDER BY total desc;
+    """)
+    query = db.engine.execute(query)
+    return render_template('manufacturers_statistic.html', title='Manufacturers statistic', query=query)
+
+
+@app.route('/admin/create_user_column', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def create_user_column():
+    if request.method == 'POST':
+        if request.form['column_name']:
+            column_name_str = request.form['column_name']
+            column = db.Column(column_name_str, db.String(100))
+            # op = Operations(context)
+            # op.add_column('user', column)
+            # # column_name = column.compile(dialect=db.engine.dialect)
+            # column_type = column.type.compile(dialect=db.engine.dialect)
+            # migrate.db.column()
+            # query = text("""
+            # ALTER TABLE tech_shop.user
+            #     ADD :column_name :column_type DEFAULT 'new column';
+            # """)
+            # import pdb; pdb.set_trace()
+            # db.engine.execute(query, {'column_name': column_name_str, 'column_type': column_type})
+            setattr(User, column_name_str,column)
+            flash('Column was added')
+    columns = User.__table__.columns
+    return render_template('create_column.html', columns=columns)

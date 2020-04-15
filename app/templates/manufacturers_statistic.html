@@ -1,0 +1,24 @@
+{% extends 'admin.html' %}
+
+{% block app_block %}
+<div class="admin__page">
+    <div class="section__title user__table__header statistic__table">
+        <p>Name</p>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>Total</p>
+    </div>
+    {% for row in query %}
+    <div class="section__text statistic__table">
+        <p>{{ row[0] }}</p>
+        <p>{{ row[1] }}</p>
+        <p>{{ row[2] }}</p>
+        <p>{{ row[3] }}</p>
+        <p>{{ row[4] }}</p>
+        <p>{{ row[5] }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

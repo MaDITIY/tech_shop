@@ -78,6 +78,7 @@ def generate_order_text(order):
             f"Product count: {order.count}\r\n"+\
             f"Product cost: {order.product.price}\r\n"+\
             f"Total cost: {order.price} $\r\n"+\
+            f"Customer: {order.customer.username} ({order.customer.email}) $\r\n"+\
             "----------------------------------\r\n"+\
             "Thank you!"
     return reciept

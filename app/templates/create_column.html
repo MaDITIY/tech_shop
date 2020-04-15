@@ -1,0 +1,19 @@
+{% extends 'admin.html' %}
+
+{% block app_block %}
+<div class="admin__page">
+    <p class="section__title">Input column name</p>
+    <form action="/admin/create_user_column" method="POST">
+        <input type="text" name="column_name" required>
+        <input type="submit" id="submit" value="Create column">
+    </form>
+    <p class="section__title">Current table state</p>
+    <table border=5px>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column.name }}</th>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endblock %}
